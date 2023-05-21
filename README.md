@@ -40,13 +40,13 @@ docker run -d -p 5901:5901 -p 6901:6901 --name=unity-docker unity-docker-img
 ```
 
 Now all you have to do is open a web browser and access the url:
-```http
-// full client with default password -> vncpassword
+```sh
+# full client with default password -> vncpassword
 http://localhost:6901/vnc.html
 
-// or
+# or
 
-// lite client
+# lite client
 http://localhost:6901/?password=vncpassword
 ```
 
