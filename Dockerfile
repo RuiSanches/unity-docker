@@ -1,4 +1,4 @@
-FROM local-debian-xfce-vnc as base
+FROM local-debian-xfce-vnc
 
 ARG UNITYHUB_VERSION
 
@@ -22,9 +22,8 @@ RUN sh -c 'echo "deb [signedby=/etc/apt/trusted.gpg.d/Unity_Technologies_ApS.gpg
 RUN apt update
 RUN if [ -z "$UNITYHUB_VERSION" ] ; then apt-get install -y unityhub ; else apt-get install -y unityhub=$UNITYHUB_VERSION ; fi
 
-# probably just need the xz-utils
 # libgconf-2-4 was on unity documentation for some issue that may happen
-#RUN apt-get install -y tar xzip gzip bzip2 zip unzip xz-utils libgconf-2-4
+#RUN apt-get install -y xz-utils libgconf-2-4
 RUN apt-get install -y xz-utils
 
 # Change back to default user

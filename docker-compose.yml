@@ -1,0 +1,17 @@
+services:
+  unity-docker:
+    image: unity-docker-img
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "5901:5901"
+      - "6901:6901"
+    volumes:
+      - unity-docker-vol:/headless
+      # Change ../unity-workspace to a directory where you have your projects on the host machine
+      - ../unity-workspace:/headless/unity-workspace
+
+volumes:
+  # TODO: check if there are better options to use here
+  unity-docker-vol:

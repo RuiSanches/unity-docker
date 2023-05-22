@@ -5,6 +5,8 @@ This is a simple project, that extends https://github.com/ConSol/docker-headless
 
 With this project you'll be able to run Unity inside a Docker container and use it on a web browser on the host machine.
 
+**Note:** This project was created only with the purpose of learning. It may have issues and not work entirely. Use at your own risk.
+
 ## Instructions
 
 This project contains a git submodule for a [fork](https://github.com/RuiSanches/docker-headless-vnc-container) of https://github.com/ConSol/docker-headless-vnc-container in consol-docker-headless-vnc-container folder. After cloning the unity-docker project, you should also run the command in the root of the unity-project:
@@ -41,7 +43,7 @@ docker run -d -p 5901:5901 -p 6901:6901 --name=unity-docker unity-docker-img
 
 Now all you have to do is open a web browser and access the url:
 ```sh
-# full client with default password -> vncpassword
+# full client with default password -> vncpassword (you will be prompted to insert the password)
 http://localhost:6901/vnc.html
 
 # or
@@ -55,9 +57,20 @@ To use Unity Hub, you can open a terminal and run:
 unityhub
 ```
 
-## Notes
+## Avanced Use Cases
 
-This project was created only with the purpose of learning.
+You will likely want to persist data, even after stopping the container. For that reason you can use the docker-compose instead.
+
+Besides persisting data using a volume, there is also a bind mount, that allows you to mount a specific directory to store your Unity projects (you can change the directory on the docker-compose file). This way you can change the code directly on the host machine, and see those changes automatically in Unity, on the container.
+
+To use the docker-compose, you can run the following commands:
+```sh
+# Builds the consol debian-xfce-vnc docker image (the project image depends on this one)
+docker build -t local-debian-xfce-vnc consol-docker-headless-vnc-container -f consol-docker-headless-vnc-container/Dockerfile.debian-xfce-vnc
+
+# Create and start the container with the appropriate volume
+docker compose up
+```
 
 ## Troubleshooting
 
