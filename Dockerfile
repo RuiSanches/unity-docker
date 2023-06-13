@@ -1,5 +1,4 @@
-#FROM local-debian-xfce-vnc
-FROM consol/debian-xfce-vnc
+FROM local-debian-xfce-vnc
 
 ARG UNITYHUB_VERSION
 
@@ -17,7 +16,7 @@ RUN mv /usr/share/keyrings/Unity_Technologies_ApS.gpg /etc/apt/trusted.gpg.d/
 
 ## Add repository to package manager
 RUN sh -c 'echo "deb [signedby=/etc/apt/trusted.gpg.d/Unity_Technologies_ApS.gpg] https://hub.unity3d.com/linux/repos/deb stable main" > /etc/apt/sources.list.d/unityhub.list'
-RUN sh -c 'echo "deb [signedby=/etc/apt/trusted.gpg.d/Unity_Technologies_ApS.gpg] https://hub.unity3d.com/linux/repos/deb unstable main" > /etc/apt/sources.list.d/unityhub.list'
+RUN sh -c 'echo "deb [signedby=/etc/apt/trusted.gpg.d/Unity_Technologies_ApS.gpg] https://hub.unity3d.com/linux/repos/deb unstable main" > /etc/apt/sources.list.d/unityhub-beta.list'
 
 ## Install unityhub
 RUN apt update
